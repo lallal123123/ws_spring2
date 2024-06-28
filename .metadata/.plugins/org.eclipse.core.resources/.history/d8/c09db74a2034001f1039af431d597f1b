@@ -1,0 +1,21 @@
+package com.example.test6_27.config;
+
+import org.springframework.boot.web.servlet.FilterRegistrationBean;
+import org.springframework.context.annotation.Bean;
+
+import com.example.test6_27.filtter.FirstFilter;
+
+public class FilterConfig {
+
+	   @Bean
+	   FilterRegistrationBean<FirstFilter> loggingFilter(){
+	      FilterRegistrationBean<FirstFilter> registrationBean = new FilterRegistrationBean<>();
+	      
+	      registrationBean.setFilter(new FirstFilter());
+	      registrationBean.addUrlPatterns("/api/test1");
+	      registrationBean.setOrder(1); //우선순위 지정,ㅏ 숫자가 작을수록 높은 우선순위
+	      
+	      return registrationBean;
+	   }
+	}
+

@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="EUC-KR">
+<title>Insert title here</title>
+</head>
+<body>
+<h1> index page</h1>
+<a href="/view/p1">p1 페이지로 가기</a>
+</body>
+</html>
