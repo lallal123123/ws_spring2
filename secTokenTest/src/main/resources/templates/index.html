@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<button onclick="login()">로그인</button><br>
+<div id="loginResult"></div><br>
+<button onclick="info()">학생정보</button><br>
+<div id="infoResult"></div>
+
+<script>
+function login(){
+	const xhttp = new XMLHttpRequest();
+	xhttp.onload = function() {	//서버가 등록처리 후 결과 데이터를 보내주면 reponseText로 받는다.
+		alert(this.responseText);
+		var result =this.responseText;
+		document.getElementById("loginResult").innerHTML = result;
+		if(result.includes("성공")){
+			var token = xhttp.getResponseHeader("Authorization");
+			localStorage.setItem("token",token);
+			
+		}
+	}
+	xhttp.open("get", "http://localhost:8829/api/login?id=teacher1&pw=1234");
+	//xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.send();
+}
+
+function info(){
+	const xhttp = new XMLHttpRequest();
+	const token = localStorage.getItem("token");
+	xhttp.onload = function() {	//서버가 등록처리 후 결과 데이터를 보내주면 reponseText로 받는다.
+		
+		var result =this.responseText;
+		document.getElementById("infoResult").innerHTML = result;
+		
+	}
+	xhttp.open("get", "http://localhost:8829/api/student/1");
+	//xhttp.setRequestHeader("Content-type", "application/json");
+	xhttp.setRequestHeader("Authorization",token+"11");
+	xhttp.send();
+}
+</script>
+
+</body>
+</html>

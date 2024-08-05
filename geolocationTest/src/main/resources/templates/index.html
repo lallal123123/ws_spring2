@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Geolocation Test</h1>
+<hr>
+<button onclick="f()">실행</button>
+<div>
+Latitude : <span id= 'lat'></span>
+</div>
+<script>
+	function f(){
+		if(navigator.geolocation){
+			navigator.geolocation
+				.getCurrentPosition(
+						function(position){
+							document.getElementById('lat').innerText = position.coords.latitude;
+							console.log("Latitude: "
+								+position.coords.latitude
+							);
+							console.log("Longitude:"
+								+ position.coords.longitude);
+							
+						},function(error){
+							console.error("Error Code = " + error.code + "-" + error.message);
+						}	
+					);
+		} else {
+			console.log("이브라우저는 지원하지 않습니다.");
+		}
+		
+	}
+</script>
+
+</body>
+</html>

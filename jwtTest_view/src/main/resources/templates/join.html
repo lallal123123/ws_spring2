@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+<form id="frm">
+<input type="text" name = "username"><br>
+<input type="password" name = "password"><br>
+
+</form>
+<button onclick="join()">가입</button>
+<div id="result"></div>
+<script>
+
+function join(){
+	const frm = document.querySelector("#frm");
+	console.log(frm);
+	const frm_={
+			"username": frm.username.value,
+			"password": frm.password.value
+	}
+	
+	const data = JSON.stringify(frm_);
+	
+	const xhttp = new XMLHttpRequest();	
+	xhttp.onload = function() {
+	document.getElementById("result").innerHTML = this.responseText;
+	}
+	xhttp.open("post", "http://localhost:8865/api/join");	
+	xhttp.setRequestHeader("Content-type", "application/json");	
+
+	xhttp.send(data);
+}
+
+
+</script>
+
+
+</body>
+</html>
